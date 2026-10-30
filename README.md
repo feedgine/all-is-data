@@ -14,9 +14,9 @@ And if the result happens to be beautiful, even better.
 
 | # | Story | Data | Read |
 |---|---|---|---|
-| 01 | **Which building will complain next?** Two years of Brooklyn housing complaints, 7,418 buildings arranged by how they break, and one chain of cause and effect that turned out to be something else. | NYC 311 housing complaints (HPD, Brooklyn, Nov 2024 – Oct 2026, 478k rows) | [Story](nyc311-predictive-maintenance/index.html) · [Explorer](nyc311-predictive-maintenance/docs/graph_explorer.html) · [Report](nyc311-predictive-maintenance/docs/report.html) · [Code](nyc311-predictive-maintenance/) |
+| 01 | **[Which building will complain next?](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/)** Two years of Brooklyn housing complaints, 7,418 buildings arranged by how they break, and one chain of cause and effect that turned out to be something else. | NYC 311 housing complaints (HPD, Brooklyn, Nov 2024 – Oct 2026, 478k rows) | [Story](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/) · [Explorer](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/docs/graph_explorer.html) · [Report](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/docs/report.html) · [Code](nyc311-predictive-maintenance/) |
 
-[![Issue 01: building similarity graph](nyc311-predictive-maintenance/docs/img/explorer-segments.png)](nyc311-predictive-maintenance/index.html)
+[![Issue 01: building similarity graph](nyc311-predictive-maintenance/docs/img/explorer-segments.png)](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/)
 
 ## How each issue is built
 
@@ -32,6 +32,12 @@ all-is-data/
 
 ## Reading the stories
 
-The pages are static. Turn on **GitHub Pages** (Settings → Pages → deploy from branch `main`, folder `/ (root)`) and each story is served at `https://<user>.github.io/all-is-data/<issue>/`.
+The pages are static. Turn on **GitHub Pages** (Settings → Pages → deploy from branch `main`, folder `/ (root)`) and each story is served at `https://feedgine.github.io/all-is-data/<issue>/`.
 
 GitHub's file view shows HTML as source code. For a local preview, run `python -m http.server` in the repo folder and open `http://localhost:8000/<issue>/`.
+
+## Licence
+
+- **Code** (Python, JavaScript, notebook code): [MIT](LICENSE)
+- **Stories, text and images:** [CC BY 4.0](LICENSE-CONTENT.md). Share and adapt freely, with credit: *Julia Malinina, all-is-data*.
+- **Data** stays under its publisher's terms (see each issue's `data/README.md`).

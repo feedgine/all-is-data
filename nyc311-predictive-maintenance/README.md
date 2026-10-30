@@ -1,6 +1,8 @@
 # Issue 01 · Which building will complain next?
 
-**[Read the story →](index.html)** · [Explorer](docs/graph_explorer.html) · [Full report](docs/report.html)
+**Live:** [feedgine.github.io/all-is-data/nyc311-predictive-maintenance/](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/)
+
+**[Read the story →](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/)** · [Explorer](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/docs/graph_explorer.html) · [Full report](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/docs/report.html)
 
 Can ordinary maintenance tickets predict the next problem in a building?
 This issue uses **NYC 311 housing complaints** (HPD, Brooklyn, Nov 2024 – Oct 2026) as a public stand-in
