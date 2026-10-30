@@ -1,0 +1,53 @@
+{
+  "data": {
+    "raw_rows": 476816,
+    "incidents": 348648,
+    "buildings": 29306,
+    "start": "2024-11-01",
+    "end": "2026-10-27"
+  },
+  "anomaly": {
+    "building_weeks": 850787,
+    "active_buildings": 8771,
+    "poisson_flags": 9286,
+    "iso_flags": 1138,
+    "both": 630,
+    "both_last8w": 156
+  },
+  "cluster": {
+    "buildings": 7419,
+    "k": 10,
+    "silhouette": {
+      "4": 0.116,
+      "5": 0.126,
+      "6": 0.126,
+      "7": 0.126,
+      "8": 0.119,
+      "9": 0.12,
+      "10": 0.133
+    }
+  },
+  "graph": {
+    "nodes": 14,
+    "edges": 22,
+    "communities": 4
+  },
+  "predict": {
+    "train_rows": 1553123,
+    "test_rows": 810854,
+    "test_pos_rate": 0.0441,
+    "auc": 0.822,
+    "ap": 0.271,
+    "auc_baseline": 0.736,
+    "ap_baseline": 0.178,
+    "p_at_1000_model": 0.583,
+    "p_at_1000_baseline": 0.462
+  },
+  "predict_early": {
+    "rows": 698296,
+    "pos_rate": 0.0259,
+    "auc": 0.755,
+    "ap": 0.098,
+    "p_at_500": 0.248
+  }
+}

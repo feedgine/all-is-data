@@ -1,0 +1,12 @@
+# data & intermediates
+**/data/*.csv
+**/build/
+# python
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+# node
+node_modules/
+**/explorer/bundle.js
+# os
+.DS_Store
