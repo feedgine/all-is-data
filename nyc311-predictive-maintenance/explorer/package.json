@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Graphistry-style WebGL graph explorer for the NYC 311 predictive-maintenance example",
   "scripts": {
-    "build": "esbuild main.js --bundle --minify --format=iife --outfile=bundle.js"
+    "build": "esbuild main.js --bundle --minify --format=iife --outfile=bundle.js && esbuild story.js --bundle --minify --format=iife --outfile=../docs/story.js"
   },
   "dependencies": {
     "graphology": "0.26.0",

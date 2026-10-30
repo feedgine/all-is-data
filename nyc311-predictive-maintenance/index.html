@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Which Building Next? · all-is-data</title>
+<meta name="description" content="Two years of Brooklyn housing complaints, 7,418 buildings arranged by how they break, and one chain of cause and effect that turned out to be something else.">
+<style>
+:root{--bg:#0b0f17;--fg:#e6edf3;--muted:#8b96a8;--line:#232c3b;--acc:#5ad1e6;--hot:#ff8a5c;--card:rgba(15,21,31,.94)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 Georgia,"Iowan Old Style","Times New Roman",serif}
+.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
+a{color:var(--acc)}
+b,strong{color:#fff}
+.num{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;font-variant-numeric:tabular-nums;color:var(--acc);font-weight:600}
+
+/* masthead + hero */
+.mast{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+.mast a{color:var(--fg);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.hero{max-width:860px;margin:0 auto;padding:72px 24px 40px}
+.kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h1{font-size:clamp(36px,6vw,64px);line-height:1.05;margin:14px 0 18px;font-weight:700;letter-spacing:-.01em}
+.dek{font-size:21px;color:#c9d1dc;max-width:700px;margin:0}
+.byline{margin-top:22px;font-size:13px;color:var(--muted)}
+.lede{max-width:860px;margin:0 auto;padding:8px 24px 40px}.lede p{max-width:680px}
+.lede p:first-child::first-letter{float:left;font-size:58px;line-height:.9;padding:6px 8px 0 0;color:var(--acc)}
+
+/* scrollytelling */
+.scrolly{position:relative;display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:0}
+.steps{position:relative;z-index:2;padding:0 28px 30vh 24px}
+.stage{position:sticky;top:0;height:100vh;border-left:1px solid var(--line);background:radial-gradient(ellipse at center,#111a2a 0%,#0b0f17 72%)}
+.stage>div.g{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .5s}
+.stage>div.g.on{opacity:1;pointer-events:auto}
+.hud{position:absolute;left:16px;bottom:14px;right:16px;display:flex;justify-content:space-between;gap:12px;align-items:flex-end;pointer-events:none;z-index:3;font-size:12px;color:var(--muted)}
+#legend{display:flex;flex-wrap:wrap;gap:4px 12px;max-width:72%}
+#legend span{display:inline-flex;align-items:center;gap:6px}#legend span.off{opacity:.3}
+#legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+#stagecount{color:var(--acc);font-weight:600;white-space:nowrap}
+.chapter{padding-top:16vh}
+.chapter h2{font-size:30px;line-height:1.15;margin:0 0 4px}
+.chapter .ch{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.step{margin:0 0 42vh;padding:18px 20px;border-left:2px solid var(--line);opacity:.45;transition:opacity .35s,border-color .35s}
+.step.active{opacity:1;border-color:var(--acc)}
+.step:last-child{margin-bottom:20vh}
+.step p{margin:0 0 12px}.step p:last-child{margin-bottom:0}
+.funnel{margin:14px 0 4px;font-size:13px}
+.funnel div{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin:7px 0}
+.funnel em{grid-column:1/-1;height:6px;border-radius:3px;background:var(--acc);display:block;font-style:normal}
+.funnel span{color:var(--muted)}.funnel b{font-variant-numeric:tabular-nums}
+.pull{font-size:22px;line-height:1.35;color:#fff;margin:6px 0 12px}
+
+/* explore + methods */
+.explore{padding:12vh 24px 0;max-width:1280px;margin:0 auto}
+.explore h2{font-size:32px;margin:6px 0 8px}
+.explore p{max-width:700px;color:#c9d1dc}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:18px 0;font-size:14px}
+.how div{border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:#c9d1dc}
+.how b{display:block;margin-bottom:2px}
+.frame{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;height:min(86vh,860px);background:#0b0f17}
+.frame iframe{width:100%;height:100%;border:0;display:block}
+.frame .full{position:absolute;right:12px;top:58px;font-size:12px;background:var(--card);border:1px solid var(--line);padding:4px 10px;border-radius:6px;text-decoration:none;z-index:2}
+.methods{max-width:760px;margin:0 auto;padding:12vh 24px 80px;font-size:15px;color:#c9d1dc}
+.methods h2{font-size:24px;color:var(--fg)}
+.methods h3{font-size:15px;color:var(--fg);margin:22px 0 4px;letter-spacing:.04em;text-transform:uppercase}
+.methods li{margin:4px 0}
+.foot{border-top:1px solid var(--line);padding:22px 24px;color:var(--muted);font-size:13px;text-align:center}
+
+@media (max-width:860px){
+  body{font-size:16px}
+  .scrolly{display:flex;flex-direction:column}
+  .stage{order:-1;position:sticky;top:0;height:48vh;border-left:0;border-bottom:1px solid var(--line);z-index:3}
+  .steps{padding:0 14px 20vh}
+  .step{background:var(--card);border:1px solid var(--line);border-left:2px solid var(--line);border-radius:8px;margin-bottom:60vh}
+  .step.active{border-left-color:var(--acc)}
+  .chapter{padding-top:8vh}
+  #legend{max-width:100%}
+  .hud{flex-direction:column;align-items:flex-start;gap:4px}
+  .frame{height:75vh}
+  .frame .full{top:auto;bottom:12px}
+}
+</style>
+</head>
+<body>
+<header class="mast sans"><a href="../">all-is-data</a><span>Issue 01 · New York housing complaints</span></header>
+
+<section class="hero">
+  <div class="kicker sans">Issue 01 · NYC 311 · Brooklyn</div>
+  <h1>Which building will complain next?</h1>
+  <p class="dek">Two years of Brooklyn housing complaints, 7,418 buildings arranged by how they break, and one chain of cause and effect that turned out to be something else.</p>
+  <div class="byline sans">Data: NYC Open Data, 311 Service Requests (HPD), Nov 2024 – Oct 2026 · Scroll to read, or <a href="#explore">jump to the explorer</a></div>
+</section>
+
+<section class="lede">
+  <p>New York publishes every housing complaint its residents file through 311: no heat, a leak, mice, a door that won’t lock. For anyone who looks after buildings, it is the closest public thing to a ticket log.</p>
+  <p>I started with a simple question. Can old tickets predict the next one? The answer is yes, with a qualification. On the way there, the most convincing pattern in the data turned out to answer a different question altogether.</p>
+</section>
+
+<section class="scrolly">
+  <div class="steps">
+
+    <div class="chapter">
+      <div class="ch sans">1 · The mess</div>
+      <h2>From complaints to buildings</h2>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"umap","color":"plain"}'>
+      <p>The raw file holds <span class="num">478,559</span> complaints. Most of the early work is deciding what counts as one problem.</p>
+      <p>When the heating fails, ten tenants call. That is one boiler, not ten problems. So complaints from the same building, in the same category, on the same day become one <b>incident</b>.</p>
+      <div class="funnel sans">
+        <div><span>Complaints</span><b>478,559</b><em style="width:100%"></em></div>
+        <div><span>Tied to a building</span><b>476,816</b><em style="width:99.6%"></em></div>
+        <div><span>Incidents after merging same-day reports</span><b>348,648</b><em style="width:72.9%"></em></div>
+        <div><span>Incidents in buildings with ≥ 10 of them</span><b>285,918</b><em style="width:59.7%"></em></div>
+      </div>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"umap","color":"plain"}'>
+      <p>29,306 buildings had at least one incident. Most had very few: 8,909 had exactly one. A building with three complaints has no meaningful “profile”, so the graph keeps buildings with ten or more.</p>
+      <p class="pull">That leaves <span class="num">7,418</span> buildings: a quarter of the buildings, but <span class="num">82%</span> of all incidents.</p>
+      <p>Each dot on the right is one of them. Each line links a building to the five buildings that break most like it.</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch sans">2 · Personalities</div>
+      <h2>Every building breaks in its own way</h2>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"umap","color":"seg"}'>
+      <p>Describe each building by how it breaks: how often, which categories, how often the same problem comes back within 30 days, how long repairs take, how much of it happens in winter.</p>
+      <p>Then let a clustering algorithm sort them. Nobody tells it what a “heat building” is. It finds ten groups anyway.</p>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"umap","color":"seg","focus":"heat-heavy + repeat failures"}'>
+      <p>The largest group, <span class="num">1,408</span> buildings, is mostly heat and hot water. Repairs close fast, in a median of <span class="num">2.4</span> days.</p>
+      <p>And then <span class="num">60%</span> of their incidents happen again within a month. Fast repairs and the same failure again is what a boiler that needs replacing looks like in a ticket log.</p>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"umap","color":"seg","focus":"high volume + broad mix"}'>
+      <p><span class="num">1,313</span> buildings file a bit of everything, at a median <span class="num">3.5</span> incidents a month, several times the rate of any other group.</p>
+      <p>No single trade fixes these. They need someone to walk through the building.</p>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"umap","color":"seg","focus":"slow to close + door-heavy"}'>
+      <p>And then a small group of <span class="num">192</span> where the median complaint stays open for <span class="num">46</span> days.</p>
+      <p>Their complaints are ordinary. The response time is what sets them apart.</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch sans">3 · Geography</div>
+      <h2>Trouble has an address</h2>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"map","color":"anom","size":"anom"}'>
+      <p>The same buildings, now placed where they stand.</p>
+      <p>An <b>anomaly</b> is a week when a building files far more than its own history and the season would predict. Two different detectors have to agree: a statistical test and an isolation forest. Over two years, <span class="num">630</span> building-weeks pass both.</p>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"map","color":"anom","size":"anom","only":"anomR"}'>
+      <p><span class="num">143</span> of these buildings had an anomaly in the last eight weeks. More than a third of them sit in five ZIP codes: Bedford-Stuyvesant, Ocean Hill, Brownsville, Bushwick and Flatbush.</p>
+      <p>The typical spike is a quiet building that suddenly files 10–25 issues across five or six categories in a single week. It looks less like everything breaking at once and more like someone finally writing it all down: an inspection, a tenants’ association, a new owner.</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch sans">4 · The twist</div>
+      <h2>The chain that wasn’t</h2>
+    </div>
+    <div class="step" data-state='{"graph":"c","metric":"raw","minLift":1.5,"minPairs":100}'>
+      <p>Anyone who maintains buildings knows this story: first a leak, then mold, then the ceiling needs paint.</p>
+      <p>The data seems to agree. Count how often problem B follows problem A within 30 days in the same building, compare it with the borough average, and you get <span class="num">680</span> “chains”, nearly everything linked to nearly everything.</p>
+    </div>
+    <div class="step" data-state='{"graph":"c","metric":"raw","minLift":1.5,"minPairs":100,"focus":"water"}'>
+      <p>The water family glows brightest. Mold is followed by a damp spot <span class="num">4.3×</span> more often than average. A heavy leak is followed by ceiling paint <span class="num">3.6×</span> more often.</p>
+      <p>That looks like a good basis for prediction.</p>
+    </div>
+    <div class="step" data-state='{"graph":"c","metric":"timing","minLift":1.5,"minPairs":100,"focus":"water"}'>
+      <p>The catch is the comparison. Buildings that leak are buildings that have everything. Compare each building with <b>its own</b> normal rate instead, and the water chain drops to <span class="num">1.2–1.4×</span>, barely above chance.</p>
+      <p>The pattern is real. It just answers a different question: it tells you <i>which buildings</i> are in trouble, not <i>what happens next</i> in them.</p>
+    </div>
+    <div class="step" data-state='{"graph":"c","metric":"timing","minLift":1.5,"minPairs":100}'>
+      <p>Only <span class="num">23</span> chains survive. The strongest are almost boringly physical: a power outage followed by no lighting, a cooking-gas shut-off followed by work on the range, a heating failure followed by work on the radiator.</p>
+      <p>Cause and effect turns out to be mostly about electricity and gas.</p>
+    </div>
+
+    <div class="chapter">
+      <div class="ch sans">5 · Prediction</div>
+      <h2>Before it happens</h2>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"umap","color":"risk"}'>
+      <p>So, back to the first question. A model trained on monthly snapshots from May 2025 to March 2026 ranks every building–category pair by the chance of at least one incident in the next 30 days.</p>
+      <p>It was tested on months it had never seen, May to September 2026. Its top 1,000 flags each month were right <span class="num">58%</span> of the time. The obvious rule, “whatever happened recently will happen again”, managed <span class="num">46%</span>.</p>
+    </div>
+    <div class="step" data-state='{"graph":"b","layout":"umap","color":"early","size":"early","only":"early"}'>
+      <p>The more useful list is one a hotspot map cannot produce: <span class="num">205</span> buildings flagged for a category they have not reported for at least 90 days.</p>
+      <p>On the test months, lists like this were about <span class="num">10×</span> better than picking at random. Not a crystal ball. A shortlist for someone with a clipboard.</p>
+    </div>
+
+  </div>
+  <div class="stage" aria-label="Interactive graph that changes as you scroll">
+    <div class="g on" id="gb"></div>
+    <div class="g" id="gc"></div>
+    <div class="hud sans"><div id="legend"></div><div id="stagecount"></div></div>
+  </div>
+</section>
+
+<section class="explore" id="explore">
+  <div class="kicker sans">6 · Your turn</div>
+  <h2>Explore the graph yourself</h2>
+  <p>Everything above, with the controls left in. Find a building, colour the graph by risk or repair time, filter it with the histograms, or switch to the failure-chain tab and flip between raw and timing lift.</p>
+  <div class="how sans">
+    <div><b>Find</b>Type an address in the search box; click a dot to inspect it.</div>
+    <div><b>Colour &amp; size</b>Segment, dominant category, risk, anomalies, repeat rate, days to close.</div>
+    <div><b>Filter</b>Drag the handles under each histogram; tick early-warning or recent anomalies.</div>
+    <div><b>Layout</b>Similarity, by segment, map, or run the live force layout.</div>
+  </div>
+  <div class="frame">
+    <a class="full sans" href="docs/graph_explorer.html" target="_blank" rel="noopener">Open full screen ↗</a>
+    <iframe id="explorer" data-src="docs/graph_explorer.html" title="NYC 311 building graph explorer" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section class="methods">
+  <h2>How this was made</h2>
+  <h3>Data</h3>
+  <p>311 Service Requests from NYC Open Data (dataset <code>erm2-nwe9</code>), filtered to agency HPD, borough Brooklyn, created 1 November 2024 – 27 October 2026. Fields used: building ID (BBL), address and coordinates, complaint category and sub-category, dates opened and closed, status. Tenant, unit and free-text resolution were not used.</p>
+  <h3>Methods</h3>
+  <ul>
+    <li><b>Incidents:</b> complaints merged by building × category × day. One placeholder building ID (0000000000) was excluded.</li>
+    <li><b>Segments:</b> per-building profile (volume, category mix, 30-day repeat rate, median days to close, open share, heat-season share, reports per incident) → PCA → KMeans with k = 10 chosen by silhouette. The silhouette is low (0.13): buildings form a continuum, so the segments are useful labels, not sharp types. The similarity layout is UMAP; lines are 5 nearest neighbours.</li>
+    <li><b>Anomalies:</b> expected weekly count = the building’s share of the trailing 26 weeks × the borough total that week (so seasonality is built in). Flagged when a Poisson tail test (p &lt; 10⁻⁴, ≥ 4 incidents) and an Isolation Forest agree.</li>
+    <li><b>Chains:</b> B within 1–30 days after A in the same building. Raw lift compares with a borough-wide rate; timing lift compares with each building’s own rate of B. Communities: Louvain.</li>
+    <li><b>Prediction:</b> gradient-boosted trees on recency and frequency features, monthly snapshots, strict time split. ROC-AUC 0.82 against 0.74 for the recency rule.</li>
+  </ul>
+  <h3>Caveats</h3>
+  <p>311 is tenant-reported and regulator-facing, not an operator’s ticket log. Duplicates and inspection sweeps inflate spikes. The test period covers one summer only, so heat predictions need a winter check. Flags and risk scores are model outputs on public data, not statements about the condition of any building.</p>
+  <h3>Files</h3>
+  <p><a href="docs/report.html">Full report</a> · <a href="docs/graph_explorer.html">Explorer, full screen</a> · <a href="NYC311_predictive_maintenance.ipynb">Notebook</a> · <a href="README.md">How to rebuild</a></p>
+</section>
+
+<footer class="foot sans"><a href="../">all-is-data</a> · Issue 01 · Data © City of New York, NYC Open Data</footer>
+
+<script src="docs/gx_data.js"></script>
+<script src="docs/story.js"></script>
+</body>
+</html>

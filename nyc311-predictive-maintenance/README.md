@@ -1,7 +1,9 @@
-# NYC 311 predictive maintenance
+# Issue 01 · Which building will complain next?
+
+**[Read the story →](index.html)** · [Explorer](docs/graph_explorer.html) · [Full report](docs/report.html)
 
 Can ordinary maintenance tickets predict the next problem in a building?
-This example uses **NYC 311 housing complaints** (HPD, Brooklyn, Nov 2024 – Oct 2026) as a public stand-in
+This issue uses **NYC 311 housing complaints** (HPD, Brooklyn, Nov 2024 – Oct 2026) as a public stand-in
 for a property manager's ticket log: one building (BBL) ≈ one property, complaint type ≈ ticket category.
 
 ![Building similarity graph, coloured by segment](docs/img/explorer-segments.png)
@@ -36,10 +38,24 @@ for a property manager's ticket log: one building (BBL) ≈ one property, compla
 
 ## Open the outputs
 
-- [`docs/report.html`](docs/report.html): full report with interactive charts, tables and the watch lists.
-- [`docs/graph_explorer.html`](docs/graph_explorer.html): WebGL graph explorer (one offline file).
+- [`index.html`](index.html): the story. Scroll to read; the graph alongside changes with each step. Ends with the full explorer.
+- [`docs/graph_explorer.html`](docs/graph_explorer.html): the explorer on its own, one offline file (3.4 MB).
+- [`docs/report.html`](docs/report.html): the full report with charts, tables and watch lists.
 
-Both are self-contained. Download and open them, or view them through GitHub Pages (see the root README).
+View them through GitHub Pages or a local server (see the root README).
+
+## Exploring the graph
+
+The explorer is a Graphistry-style graph: dark background, WebGL rendering, a live force layout and histogram filters. It works offline and sends no data anywhere.
+
+1. **Building similarity graph:** 7,418 buildings, each linked to its 5 most similar buildings (28,752 edges).
+   * Layouts: Similarity, By segment, Map, or ▶ Run force layout to watch it settle.
+   * Colour and size by: segment, dominant category, 30-day risk, early-warning candidates, anomalies, repeat rate, or days to close.
+2. **Filters:** drag the two handles under each histogram (volume, repeat rate, days to close, risk) to narrow the range. Tick "only early-warning" (205 buildings) or "only recent anomalies" (143), filter by ZIP, or click a segment in the legend to hide it.
+3. **Inspector:** click a building to see its stats, category mix, early-warning flag and most similar buildings. Double-click to zoom in. The search box finds an address.
+4. **Failure-chain graph:** lift and minimum-pairs sliders, and a toggle between timing lift and raw lift. Raw lift turns the leak → mold → paint "chain" into a hairball; timing lift shows how little of it is about sequence.
+
+**Which buildings are in the graph:** buildings with at least 10 incidents over the two years (one placeholder building ID excluded). That is 7,418 of 29,306 buildings, a quarter of them, but 82% of all incidents. Below 10 incidents a category mix is mostly noise.
 
 ## Run it yourself
 
@@ -49,12 +65,12 @@ python fetch_data.py                                    # ~2–5 min, ~100 MB in
 jupyter nbconvert --to notebook --execute --inplace \
   --ExecutePreprocessor.timeout=1500 NYC311_predictive_maintenance.ipynb   # ~4 min → docs/report.html
 python export_graph.py                                  # → build/graph_data.json
-cd explorer && npm install && npm run build && cd ..
-python explorer/assemble.py build/graph_data.json docs/graph_explorer.html
+cd explorer && npm install && npm run build && cd ..   # bundles the explorer and docs/story.js
+python explorer/assemble.py build/graph_data.json docs/graph_explorer.html   # also writes docs/gx_data.js
 ```
 
-Optional: `graphistry_upload.py` pushes the same graph to a [Graphistry](https://www.graphistry.com/) server
-(needs an account; it uploads addresses and scores to that server).
+Optional: `graphistry_upload.py` pushes the same graph to a [Graphistry](https://www.graphistry.com/) GPU server.
+It needs an account and network access, and it uploads addresses and risk scores to that server.
 
 ## Files
 
@@ -64,8 +80,9 @@ Optional: `graphistry_upload.py` pushes the same graph to a [Graphistry](https:/
 | `NYC311_predictive_maintenance.ipynb` | The analysis, executed (source mirrored in `analysis.py`) |
 | `report_builder.py` | Assembles `docs/report.html` |
 | `export_graph.py` | Builds the graph data for the explorer |
-| `explorer/` | Explorer front end (`main.js`, `template.html`) and `assemble.py` |
-| `docs/` | Generated outputs: report, explorer, key numbers, watch list, screenshots |
+| `index.html` | The story page; loads `docs/gx_data.js` and `docs/story.js` |
+| `explorer/` | Front-end source: `main.js` + `template.html` (explorer), `story.js` (story page), `assemble.py` |
+| `docs/` | Generated outputs: report, explorer, story data and script, key numbers, watch list, screenshots |
 
 ## Caveats
 

@@ -1,30 +1,37 @@
 # all-is-data
 
-**Everything is data.** Viewing the world through quantification, analytics and information theory.
+After spending so much time collecting and organising data, I’m increasingly interested in what happens once it's cleaned, structured and finally behaving itself.
 
-Worked data-visualisation and analytics examples on public datasets. Each example is self-contained:
-it has a script to fetch the data, a reproducible notebook, and interactive HTML outputs you can open
-in a browser without a server.
+I want to explore how to tell stories through data visualisation. Not just make pretty charts, but find the patterns, unexpected connections and little stories hiding inside complicated datasets.
 
-## Examples
+I like starting with a question, following the data, and occasionally discovering that the interesting answer belongs to a completely different question.
 
-| Example | Dataset | Techniques | Open |
+The challenge is to make all that complexity understandable without throwing away the interesting bits.
+
+And if the result happens to be beautiful, even better.
+
+## Issues
+
+| # | Story | Data | Read |
 |---|---|---|---|
-| [NYC 311 predictive maintenance](nyc311-predictive-maintenance/) | NYC 311 housing complaints (HPD, Brooklyn, 24 months, 478k rows) | Seasonal anomaly detection · Isolation Forest · UMAP + KMeans clustering · co-occurrence graph with Louvain communities · gradient-boosted 30-day risk model · WebGL graph explorer | [Report](nyc311-predictive-maintenance/docs/report.html) · [Graph explorer](nyc311-predictive-maintenance/docs/graph_explorer.html) |
+| 01 | **Which building will complain next?** Two years of Brooklyn housing complaints, 7,418 buildings arranged by how they break, and one chain of cause and effect that turned out to be something else. | NYC 311 housing complaints (HPD, Brooklyn, Nov 2024 – Oct 2026, 478k rows) | [Story](nyc311-predictive-maintenance/index.html) · [Explorer](nyc311-predictive-maintenance/docs/graph_explorer.html) · [Report](nyc311-predictive-maintenance/docs/report.html) · [Code](nyc311-predictive-maintenance/) |
 
-## Layout
+[![Issue 01: building similarity graph](nyc311-predictive-maintenance/docs/img/explorer-segments.png)](nyc311-predictive-maintenance/index.html)
+
+## How each issue is built
 
 ```
 all-is-data/
-└── <example>/
-    ├── README.md        what it shows, findings, how to run
+└── <issue>/
+    ├── index.html       the story: scroll to read, interactive graphics alongside
+    ├── README.md        method, results, how to rebuild
     ├── fetch_data.py    downloads the raw data into data/ (data is not committed)
     ├── *.ipynb          the analysis, executed
-    └── docs/            interactive HTML outputs + screenshots
+    └── docs/            interactive outputs and the files the story page loads
 ```
 
-## Viewing the HTML outputs
+## Reading the stories
 
-The `.html` files are self-contained (no server, no external calls). Download and open them, or turn on
-**GitHub Pages** for this repo (Settings → Pages → deploy from branch `main`, folder `/ (root)`).
-They are then served at `https://<user>.github.io/all-is-data/<example>/docs/…`.
+The pages are static. Turn on **GitHub Pages** (Settings → Pages → deploy from branch `main`, folder `/ (root)`) and each story is served at `https://<user>.github.io/all-is-data/<issue>/`.
+
+GitHub's file view shows HTML as source code. For a local preview, run `python -m http.server` in the repo folder and open `http://localhost:8000/<issue>/`.
