@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Resonant Gaps · all-is-data</title>
+<meta name="description" content="Issue 02. A DHIS2 health export, played back as silence: blank cells, missing reports and missing populations turned into a map, a rhythm and a drone.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Resonant Gaps: listening to what a health system doesn’t write down">
+<meta property="og:description" content="Issue 02. A DHIS2 health export, played back as silence: blank cells, missing reports and missing populations turned into a map, a rhythm and a drone.">
+<meta property="og:url" content="https://feedgine.github.io/all-is-data/dhis2-missing-data/">
+<meta property="og:image" content="https://feedgine.github.io/all-is-data/dhis2-missing-data/sierra-leone-demo/img/poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600&family=Martian+Mono:wght@300;400&display=swap">
+<style>
+/* Layout: a single reading column on black, the work itself (video, stills) breaking out wider. */
+:root{
+  --bg:#050506; --fg:#ecebe6; --body:#cfcdc6; --dim:#8b8a86; --faint:#2a2a2c; --line:#1b1b1d;
+  --display:"Familjen Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--fg)}
+body{margin:0;font:17px/1.65 var(--display);padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-block:0 60px}
+a{color:var(--fg);text-underline-offset:3px}
+.mast{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;padding-block:16px 12px;border-bottom:1px solid var(--faint);font:400 11px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.mast a{text-decoration:none}.mast a:hover{text-decoration:underline}
+.col{max-width:700px;margin:0 auto}
+.wide{max-width:1080px;margin:0 auto}
+.kicker{font:400 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:72px}
+h1{font-weight:500;font-size:clamp(34px,5.6vw,60px);line-height:1.04;letter-spacing:-.02em;margin:16px 0 20px;text-wrap:balance}
+.dek{font-size:21px;line-height:1.5;color:var(--body);margin:0;text-wrap:pretty}
+.byline{margin-top:22px;font:400 11px/1.5 var(--mono);color:var(--dim);letter-spacing:.04em}
+h2{font-weight:500;font-size:26px;line-height:1.2;margin:64px 0 14px;text-wrap:balance}
+h3{font-weight:600;font-size:18px;margin:0 0 6px}
+p{color:var(--body);margin:0 0 16px}
+b,strong{color:var(--fg);font-weight:600}
+figure{margin:40px auto 0}
+video,img{display:block;width:100%;max-width:100%;height:auto;background:#000;border:1px solid var(--line)}
+figcaption{font:400 11px/1.6 var(--mono);color:var(--dim);margin-top:10px;letter-spacing:.02em}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:8px;padding:12px 22px;border:1px solid var(--fg);border-radius:999px;color:var(--bg);background:var(--fg);font-weight:500;text-decoration:none}
+.cta:hover{background:transparent;color:var(--fg)}
+.cta:focus-visible,a:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.stories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 32px;margin-top:28px}
+@media (max-width:720px){.stories{grid-template-columns:minmax(0,1fr)}}
+.story img{margin-bottom:14px}
+.story .n{font:300 26px/1.1 var(--mono);font-variant-numeric:tabular-nums;color:var(--fg);margin-bottom:6px}
+.story p{font-size:15.5px;margin:0}
+.countries{width:100%;border-collapse:collapse;font-size:15px;margin-top:8px}
+.countries th,.countries td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--faint);vertical-align:top}
+.countries th{font:400 10.5px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.tablewrap{overflow-x:auto}
+.note{border-left:1px solid var(--faint);padding-left:18px}
+footer{max-width:700px;margin:72px auto 0;padding-top:16px;border-top:1px solid var(--faint);font:400 11px/1.7 var(--mono);color:var(--dim)}
+footer a{color:var(--dim)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="mast"><a href="../">all-is-data</a><span>Issue 02 · Resonant Gaps</span></div>
+
+<header class="col">
+  <div class="kicker">Issue 02 · Resonant Gaps · health records</div>
+  <h1>Listening to what a health system doesn’t write down</h1>
+  <p class="dek">A national health database, played back as silence. Blank cells, reports that never arrived and populations nobody counted become a map, a rhythm and a drone.</p>
+  <div class="byline">Feedgine (Julia Malinina) · DHIS2 export, 2025 · audiovisual study</div>
+</header>
+
+<figure class="wide">
+  <video controls playsinline preload="metadata" poster="sierra-leone-demo/img/poster.jpg">
+    <source src="sierra-leone-demo/preview.mp4" type="video/mp4">
+  </video>
+  <figcaption>28 seconds, sound on. The four movements in order, rendered from the Sierra Leone demo export.</figcaption>
+</figure>
+
+<main class="col">
+  <h2>Statement</h2>
+  <p>Data is usually read for what it contains. <b>Resonant Gaps</b> reads it for what it leaves out. The project takes exports from heavily measured systems (code repositories, ticket queues, pedigrees, document scans, health records) and treats their nulls, dropouts and omissions as the material of the work.</p>
+  <p>This issue is the health‑records movement. Its source is <b>DHIS2</b>, the open‑source platform many ministries of health use to collect monthly reports from every clinic in the country. Each report is a promise that something was counted. When a clinic loses power, when a form is sent half empty, when a population figure was never entered, the promise breaks quietly. The national charts still draw a line.</p>
+  <p>Here the breaks are made audible. A recorded value is a tone. A blank cell is a short burst of noise, because nobody can say whether it means zero or nothing. A missing report is silence, and silence takes up space in the rhythm. The piece is built to be listened to in a room, with the map projected large and the gaps loud enough to notice.</p>
+
+  <p style="margin-top:28px"><a class="cta" href="sierra-leone-demo/">Enter the piece · Sierra Leone (demo)</a></p>
+
+  <h2>Four kinds of silence</h2>
+  <div class="stories">
+    <div class="story"><img src="sierra-leone-demo/img/scene-1.jpg" alt="Map of facilities: filled dots for recorded doses, faint rings for blank cells, an outer ring of facilities with no location" loading="lazy">
+      <div class="n">950,749 values · 0 zeros</div><h3>Zero or missing</h3>
+      <p>DHIS2 does not keep a typed zero unless a field is set up for it. So the export has no zeros at all, only values and blanks, and a blank can mean “none happened” or “nobody wrote it down”.</p></div>
+    <div class="story"><img src="sierra-leone-demo/img/scene-2.jpg" alt="Thirteen concentric district rings with one spoke per facility report received" loading="lazy">
+      <div class="n">83.4% of reports arrived</div><h3>Reporting rhythm</h3>
+      <p>Thirteen districts play one shared pulse. Every missing monthly report is a beat that doesn’t sound. From October the rings thin out, and by December a third of clinics are quiet.</p></div>
+    <div class="story"><img src="sierra-leone-demo/img/scene-3.jpg" alt="Facilities as rings filled by vaccine coverage; dashed pale circles where population data is missing" loading="lazy">
+      <div class="n">134 facilities · no denominator</div><h3>Ghost denominators</h3>
+      <p>Coverage is doses divided by the people who should get them. One clinic in nine has no population figure, so its percentage can’t exist, yet its doses still count towards the district total.</p></div>
+    <div class="story"><img src="sierra-leone-demo/img/scene-4.jpg" alt="Missingness matrix: nine data elements by 1,166 facilities by 12 months" loading="lazy">
+      <div class="n">81.6% vs 2.4% filled</div><h3>Watched and unwatched</h3>
+      <p>Antenatal visits are recorded almost everywhere. Maternal deaths are a field left empty. HIV treatment and child‑mortality forms almost never arrive. Each programme sings as loudly as it is recorded.</p></div>
+  </div>
+
+  <h2>Countries</h2>
+  <p>The same reading can be applied to any DHIS2 instance. New exports are added here as they are made.</p>
+  <div class="tablewrap">
+  <!-- COUNTRIES:START -->
+<table class="countries"><thead><tr><th>Country</th><th>Source</th><th>Period</th><th>Headline</th></tr></thead><tbody><tr><td><a href="sierra-leone-demo/">Sierra Leone (demo)</a></td><td>DHIS2 demo database (HISP, University of Oslo)</td><td>Jan–Dec 2025</td><td>950,749 values, 0 zeros; 134 facilities with no denominator</td></tr></tbody></table>
+<!-- COUNTRIES:END -->
+  </div>
+
+  <h2>About the data</h2>
+  <div class="note">
+    <p>The first piece uses the <b>Sierra Leone demo database</b> that the DHIS2 team at the University of Oslo (HISP) runs publicly for training and testing. It mirrors the real structure of Sierra Leone’s health system: 13 districts, 152 chiefdoms and 1,166 facilities. Much of its data is synthetic or regenerated each year, so the patterns are <b>structural</b>, not epidemiological. It shows how DHIS2 records absence, not how healthy anyone is.</p>
+    <p>The export covers January–December 2025: six monthly reporting forms (Child Health, Reproductive Health, Morbidity, PMTCT, ART, Mortality under 5), population figures and coverage indicator definitions, taken through the public DHIS2 Web API. Only aggregate counts per facility and month are used. There is no personal or patient‑level data.</p>
+    <p>A blank cell is never shown as zero. Where the export cannot tell the two apart, the piece doesn’t either.</p>
+  </div>
+</main>
+
+<footer>
+  Resonant Gaps · Feedgine (Julia Malinina) · <a href="../">all-is-data</a><br>
+  Text, images and video: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Page code: MIT. Data: DHIS2 demo database (HISP, University of Oslo), under its publisher’s terms.<br>
+  Background reading: zero vs missing values in DHIS2 (<a href="https://link.springer.com/article/10.1186/s12889-023-15979-z">BMC Public Health, 2023</a>), DHIS2 <a href="https://docs.dhis2.org/en/implement/data-quality/implementation-of-funtionality-and-procedures.html">data quality guidance</a>.
+</footer>
+</body>
+</html>

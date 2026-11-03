@@ -15,8 +15,11 @@ And if the result happens to be beautiful, even better.
 | # | Story | Data | Read |
 |---|---|---|---|
 | 01 | **[Which building will complain next?](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/)** Two years of Brooklyn housing complaints, 7,418 buildings arranged by how they break, and one chain of cause and effect that turned out to be something else. | NYC 311 housing complaints (HPD, Brooklyn, Nov 2024 – Oct 2026, 478k rows) | [Story](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/) · [Explorer](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/docs/graph_explorer.html) · [Report](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/docs/report.html) · [Code](nyc311-predictive-maintenance/) |
+| 02 | **[Listening to what a health system doesn’t write down](https://feedgine.github.io/all-is-data/dhis2-missing-data/)** Resonant Gaps: a DHIS2 health export played back as silence. Blank cells, missing reports and missing populations become a map, a rhythm and a drone. | DHIS2 Sierra Leone demo database (HISP, University of Oslo), 2025, 1,166 facilities | [Story](https://feedgine.github.io/all-is-data/dhis2-missing-data/) · [Piece](https://feedgine.github.io/all-is-data/dhis2-missing-data/sierra-leone-demo/) · [Video](dhis2-missing-data/sierra-leone-demo/preview.mp4) · [Notes](dhis2-missing-data/) |
 
 [![Issue 01: building similarity graph](nyc311-predictive-maintenance/docs/img/explorer-segments.png)](https://feedgine.github.io/all-is-data/nyc311-predictive-maintenance/)
+
+[![Issue 02: Resonant Gaps, zero or missing](dhis2-missing-data/sierra-leone-demo/img/poster.jpg)](https://feedgine.github.io/all-is-data/dhis2-missing-data/)
 
 ## How each issue is built
 
@@ -29,6 +32,8 @@ all-is-data/
     ├── *.ipynb          the analysis, executed
     └── docs/            interactive outputs and the files the story page loads
 ```
+
+Some issues publish only the finished work and its notes, without the build code (Issue 02).
 
 ## Reading the stories
 
